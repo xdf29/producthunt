@@ -19,4 +19,4 @@ class Product(models.Model):
         return self.body[:100]
     
     def formatted_date(self):
-        return self.strftime("%b %Y")
+        return self.pub_date.strftime("%b %Y")

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row pt-3">
+    <div class="col-4">
+        <img src="{{ product.icon.url }}" alt="" width="100%">
+    </div>
+    <div class="col-8">
+        <a href="{{ product.url }}"><h2>{{ product.title }}</h2></a>
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-10">
+        <img src="{{ product.image.url }}" alt="" width="100%" >
+    </div>
+    <div class="col-2">
+        <form id="my_form" method="POST" action="{% url 'detail' product.id %}">
+            {% csrf_token %}
+            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><button class="btn btn-primary"><i class="fas fa-caret-up"></i> Upvote {{ product.votes_total }}</button></a>
+        </form>
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-5">
+        <h4>Hunted By {{ product.hunter.username }} </h4>
+    </div>
+    <div class="col-5 text-right">
+        <h4><i class="fas fa-calendar-alt"></i> {{ product.formatted_date }} </h4>
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-10">
+        <p>{{ product.body }}</p>
+    </div>
+</div>
+
+{% endblock %}
